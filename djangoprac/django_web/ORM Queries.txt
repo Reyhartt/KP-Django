@@ -1,0 +1,54 @@
+>>> newUser2.set_password("1234")
+>>> newUser2.save()
+>>> newUser3 = User()
+>>> newUser3
+<User: >
+>>> newUser3.username = "Kullanici3"" 
+  File "<console>", line 1                                   
+    newUser3.username = "Kullanici3""                        
+                                    ^                        
+SyntaxError: unterminated string literal (detected at line 1)
+>>> newUser3.username ="kullanici3"                          
+>>> newUser3.set_password("12345") 
+>>> newUser3.first_name="ZEZE"
+>>> newUser3.save()
+>>> newUser3.is_superuser = True
+>>> newUser3.save()
+>>> article1 = Article(title="SHELL ARTICLE 1",content="python manage.py shell komutu ile terminalden eriş.
+",author=newUser3)
+>>> article1.save()
+>>> article2 = Article()
+>>> article2.title = "SHELL ARTICLE 2"
+>>> article2.author = newUser2
+>>> article2.content = "Article sınıfının author nesnesi auth dosyasındaki User nesnesi ile bağdaştırıldı."
+
+>>> article2.save()
+>>> Article.objects.create(title="Deneme 5",content="DENEME5",author=newUser) 
+<Article: Deneme 5>
+>>> article3 = Article.objects.create(title="Deneme 6",content="DENEME5",author=newUser) 
+>>> article3.title
+'Deneme 6'
+>>> article.title = "Deneme 6 değişti."
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'article' is not defined
+>>> article3.title = "Deneme 6 değişti."
+>>> article3.save()
+>>> Article.objects.all()
+<QuerySet [<Article: BASLIK 1>, <Article: MAKALE 1>, <Article: MAKALE 2>, <Article: SHELL ARTICLE 1>, <Arti
+cle: SHELL ARTICLE 2>, <Article: Deneme 5>, <Article: Deneme 6 değişti.>]>
+>>> Article.objects.get(title="BASLIK 1")
+<Article: BASLIK 1>
+>>> article3.delete()
+(1, {'article.Article': 1})
+>>> Article.objects.get(id=8) 
+<Article: Deneme 5>
+>>> Article.objects.delete(title="Deneme 5") 
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'Manager' object has no attribute 'delete'
+>>> Article.objects.filter(title__contains="Den")
+<QuerySet [<Article: Deneme 5>]>
+>>> tempArticle = Article.objects.filter(title__contains="Den")
+>>> tempArticle.delete()
+(1, {'article.Article': 1})

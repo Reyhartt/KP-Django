@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="row">
+                <div class="col-lg-8">
+                    <!-- Post content-->
+                    <article>
+                        <!-- Post header-->
+                        <header class="mb-4">
+                            <!-- Post title-->
+                            <h2 class="fw-bolder mb-1">{{article.title}}</h2>
+                            <p class="lead">by {{article.author.username}}</p>
+                            <!-- Post meta content-->
+                            <div class="text-muted fst-italic mb-2">{{article.created_date}}</div>
+                        </header>
+                        <!-- Preview Image -->
+                        {% if article.article_image %}
+                       <figure class="mb-4"><img class="img-fluid rounded" src="{{article.article_image.url}}" alt="..." /></figure>
+                        {% endif %}
+                        <!-- Post content-->
+                        <section class="mb-5">
+                            <p>
+                                {{article.content|safe}}
+                            </p>
+                        </section>
+                    </article>
+                </div>
+            </div>
+<!--
+    <div class="card-body">
+        <form class="mb-4">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>{{user.username}}</label>
+                <input type="text" class="form-control" id="comment" placeholder="Yorum Ekle...">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+
+        <button type="submit" class="btn btn-success" style="margin-top:5px;">Gönder</button>
+        </form>
+</div>-->
+
+        <h4>YORUMLAR</h4>
+      <hr>
+        {% if comments %}
+        {% for comment in comments %}
+            <div class="media mb-4">
+                <img class=" d-flex mr-3 rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
+                <div class="media-body">
+                    <h5 class="mt-0">{{comment.comment_author}}</h5>
+                    {{comment.comment_content}}
+                    <p>   </p>
+                    {{comment.comment_date}}
+                    <hr>
+                </div>
+            </div>
+        {% endfor %}
+
+        {% else %}
+            <div class="alert alert-danger">
+                Bu makaleye herhangi bir yorum yapılmamıştır.
+            </div>
+        {% endif %}
+        <br>
+        <hr>
+            <h5>Yorum Ekle</h5>
+    <div class="form-group">
+        <div><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+            <div class="card-body">
+                <form class="mb-4" action="{% url 'article:addcomment' article.id %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                <label for="isim">İsim</label>
+                <input name ="comment_author" type="text" class="form-control" id="isim" placeholder="İsminizi yazınız.">
+                </div>
+                    <div class="form-group">
+                        <label>Yorum</label>
+                        <textarea name="comment_content" class="form-control" rows="3" placeholder="Yorum ekle..."></textarea>
+                        <button type="submit" class="btn btn-success" style="margin-top:5px;">Gönder</button>
+                    </div>
+                </form>
+                </div>
+                </div>
+
+{% endblock body %}

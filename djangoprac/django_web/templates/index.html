@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="jumbotron text-center">
+    <h3>
+        Python Django Geliştirici
+    </h3>
+    <p>
+        Bu sayfa , size nasıl Python Django Geliştirici olacağınızı adım adım anlatarak rehberlik edecektir.
+    </p>
+</div>
+
+<p>
+    {% if request.user.is_authenticated %}
+
+    {% else %}
+
+    {% endif %}
+
+</p>
+<!-- DJANGO-HTML arasında veri/bilgi iletişimi ilgili uygulama klasörünün views dosyasında render() metodunda kurulur.-->
+<ul>
+{% for number in numbers %}
+    <li>{{number}}</li>
+{% endfor %}
+</ul>
+{% endblock body %}
