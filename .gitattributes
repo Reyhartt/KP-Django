@@ -1,5 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto
-djangoweb/static/* linguist-vendored
-djangoweb/staticfiles/* linguist-vendored
-djangoweb/templates/* linguist-vendored
+*.js linguist-detectable=false
+*.css linguist-detectable=false
+*.html linguist-detectable=false
