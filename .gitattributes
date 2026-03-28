@@ -1,5 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto
-djangoprac/djangoweb/static/* linguist-vendored
-djangoprac/djangoweb/staticfiles/* linguist-vendored
-djangoprac/djangoweb/templates/* linguist-vendored
+djangoweb/static/* linguist-vendored
+djangoweb/staticfiles/* linguist-vendored
+djangoweb/templates/* linguist-vendored
